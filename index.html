@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renovpourtoi — Where Matter Becomes Emotion · Microciment, Bois & Métal</title>
+<meta name="description" content="Renovpourtoi — Artisan rénovateur & créateur sur mesure. Microciment, bois, métal. Rénovation et création brutes et intemporelles. Where matter becomes emotion.">
+
+<!-- ===== GOOGLE FONTS ===== -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Albert+Sans:wght@300;400;500;600&display=swap');
+
+/* ===== VARIABLES ===== */
+:root {
+  --cement:  #D8D2C7;
+  --charcoal:#2B2826;
+  --oak:     #B8956A;
+  --bone:    #F7F4EE;
+  --clay:    #8C8275;
+  --brass:   #A67C52;
+  --brass-hover: #B98D5E;
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Albert Sans', system-ui, sans-serif;
+
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--charcoal);
+  background: var(--bone);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ===== TEXTURE MICROCIMENT (filtre procédural) ===== */
+.has-cement-texture { position: relative; }
+.has-cement-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  filter: url(#cementGrain);
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+}
+.has-cement-texture > * { position: relative; z-index: 1; }
+
+/* ===== UTILITAIRES ===== */
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--clay);
+  display: block;
+  margin-bottom: 24px;
+}
+.section { padding: 120px 6vw; }
+.section-narrow { max-width: 1280px; margin: 0 auto; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; }
+.italic-accent { font-style: italic; font-weight: 300; }
+
+img.matter-filter,
+.matter-filter img,
+.matter-filter {
+  filter: saturate(0.92) contrast(1.03);
+}
+
+/* Boutons */
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 14px 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.btn-light { background: var(--bone); color: var(--charcoal); }
+.btn-light:hover { background: rgba(247,244,238,0.85); }
+.btn-outline-light { background: transparent; border-color: var(--bone); color: var(--bone); }
+.btn-outline-light:hover { background: rgba(247,244,238,0.1); }
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 6vw;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+}
+.header.scrolled {
+  background: rgba(247,244,238,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 6vw;
+  box-shadow: 0 1px 0 rgba(140,130,117,0.15);
+}
+.logo {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--bone);
+  transition: color 0.4s ease;
+}
+.header.scrolled .logo { color: var(--charcoal); }
+
+.nav { display: flex; align-items: center; gap: 36px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(247,244,238,0.85);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+.header.scrolled .nav-links a { color: var(--clay); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: currentColor;
+  transition: width 0.3s var(--reveal-ease);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--bone); }
+.header.scrolled .nav-links a:hover,
+.header.scrolled .nav-links a.active { color: var(--charcoal); }
+.nav-links a.active::after { width: 100%; }
+
+.cta-header {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 10px 24px;
+  border-radius: 2px;
+  border: 1px solid var(--bone);
+  color: var(--bone);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.header.scrolled .cta-header { border-color: var(--charcoal); color: var(--charcoal); }
+.cta-header:hover { background: var(--bone); color: var(--charcoal); }
+.header.scrolled .cta-header:hover { background: var(--charcoal); color: var(--bone); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 110;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 1px;
+  background: var(--bone);
+  transition: all 0.4s var(--reveal-ease);
+}
+.header.scrolled .hamburger span { background: var(--charcoal); }
+.mobile-overlay.open ~ .header .hamburger span,
+.hamburger.active span { background: var(--charcoal); }
+.hamburger.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+/* Mobile overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bone);
+  z-index: 105;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.mobile-overlay.open { opacity: 1; visibility: visible; }
+.mobile-overlay a {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 30px;
+  color: var(--charcoal);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.mobile-overlay.open a { opacity: 1; transform: translateY(0); }
+.mobile-overlay.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-overlay.open a:nth-child(2) { transition-delay: 0.18s; }
+.mobile-overlay.open a:nth-child(3) { transition-delay: 0.26s; }
+.mobile-overlay.open a:nth-child(4) { transition-delay: 0.34s; }
+.mobile-overlay.open a:nth-child(5) { transition-delay: 0.42s; }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.03);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--charcoal);
+  opacity: 0.35;
+  z-index: 1;
+}
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  filter: url(#cementGrain);
+  opacity: 0.02;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 6vw;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero .eyebrow { color: var(--bone); letter-spacing: 0.25em; }
+.hero h1 {
+  color: var(--bone);
+  margin-bottom: 28px;
+}
+.hero h1 .line1 {
+  display: block;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(30px, 4vw, 52px);
+  font-variation-settings: 'opsz' 60;
+  opacity: 0.95;
+}
+.hero h1 .line2 {
+  display: block;
+  font-weight: 600;
+  font-size: clamp(48px, 7vw, 96px);
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.01em;
+}
+.hero-sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 17px;
+  color: rgba(247,244,238,0.9);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--bone);
+  transform-origin: top;
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+}
+
+/* ===== MANIFESTO ===== */
+.manifesto {
+  background: var(--bone);
+  text-align: center;
+  padding: 140px 6vw;
+}
+.manifesto-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.35;
+  color: var(--charcoal);
+  max-width: 800px;
+  margin: 0 auto 32px;
+  font-variation-settings: 'opsz' 100;
+}
+.manifesto-sign {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--clay);
+}
+
+/* ===== SAVOIR-FAIRE ===== */
+.savoir { background: var(--cement); }
+.savoir .eyebrow { color: rgba(43,40,38,0.7); }
+.savoir h2 {
+  color: var(--charcoal);
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 64px;
+  max-width: 700px;
+}
+.matieres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.matiere img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 0;
+  filter: saturate(0.92) contrast(1.03);
+  margin-bottom: 24px;
+}
+.matiere-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 8px;
+}
+.matiere h3 {
+  font-size: 28px;
+  color: var(--charcoal);
+  margin-bottom: 14px;
+}
+.matiere p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--clay);
+}
+
+/* ===== PROCESSUS ===== */
+.processus { background: var(--bone); }
+.processus .eyebrow { color: var(--clay); }
+.processus h2 {
+  color: var(--charcoal);
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 64px;
+}
+.etapes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.etape {
+  padding: 0 32px;
+  border-left: 1px solid rgba(140,130,117,0.2);
+}
+.etape:first-child { padding-left: 0; border-left: none; }
+.etape-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 16px;
+}
+.etape h3 {
+  font-size: 22px;
+  color: var(--charcoal);
+  margin-bottom: 14px;
+}
+.etape p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--clay);
+}
+
+/* ===== REALISATIONS ===== */
+.realisations { background: var(--cement); }
+.realisations .eyebrow { color: rgba(43,40,38,0.7); }
+.realisations h2 {
+  color: var(--charcoal);
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 56px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 320px 320px;
+  gap: 6px;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+.gallery-item:first-child { grid-row: 1 / 3; }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  filter: saturate(0.92) contrast(1.03);
+  transition: transform 0.9s var(--reveal-ease);
+}
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--charcoal);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: flex-end;
+}
+.gallery-item:hover .gallery-overlay { opacity: 0.25; }
+.gallery-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--bone);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 2;
+}
+.gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
+.gallery-cta {
+  text-align: right;
+  margin-top: 32px;
+}
+.gallery-cta a {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--charcoal);
+  transition: opacity 0.3s ease;
+}
+.gallery-cta a:hover { opacity: 0.6; }
+
+/* ===== ATELIER ===== */
+.atelier { background: var(--bone); }
+.atelier-grid {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 64px;
+  align-items: center;
+}
+.atelier-img img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 0;
+  filter: saturate(0.92) contrast(1.03);
+}
+.atelier .eyebrow { color: var(--clay); }
+.atelier h2 {
+  font-size: clamp(30px, 3vw, 44px);
+  color: var(--charcoal);
+  margin-bottom: 28px;
+}
+.atelier p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--clay);
+  margin-bottom: 20px;
+}
+.atelier-mentions {
+  margin-top: 32px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--brass);
+}
+
+/* ===== TEMOIGNAGES ===== */
+.temoignages { background: var(--cement); }
+.temoignages .eyebrow { color: rgba(43,40,38,0.7); }
+.temoignages h2 {
+  color: var(--charcoal);
+  font-size: clamp(30px, 4vw, 46px);
+  margin-bottom: 64px;
+}
+.temoignages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.temoignage {
+  padding: 0 40px;
+  border-left: 1px solid rgba(140,130,117,0.2);
+}
+.temoignage:first-child { padding-left: 0; border-left: none; }
+.temoignage-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+.temoignage-author {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--clay);
+}
+
+/* ===== CONTACT ===== */
+.contact {
+  background: var(--charcoal);
+  color: var(--bone);
+}
+.contact .eyebrow { color: var(--brass); }
+.contact h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(34px, 5vw, 64px);
+  color: var(--bone);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-variation-settings: 'opsz' 120;
+}
+.contact-sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 17px;
+  color: rgba(247,244,238,0.7);
+  margin-bottom: 64px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+.contact-channels { display: flex; flex-direction: column; gap: 32px; }
+.channel-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 8px;
+}
+.channel-value {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--bone);
+  transition: color 0.3s ease;
+}
+a.channel-value:hover { color: var(--brass); }
+
+/* Formulaire */
+.contact-form { display: flex; flex-direction: column; gap: 28px; }
+.form-field { display: flex; flex-direction: column; }
+.form-field label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  margin-bottom: 10px;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(247,244,238,0.25);
+  border-radius: 0;
+  padding: 12px 0;
+  color: var(--bone);
+  transition: border-color 0.3s ease;
+}
+.form-field select { cursor: pointer; }
+.form-field select option { background: var(--charcoal); color: var(--bone); }
+.form-field textarea { resize: vertical; min-height: 90px; }
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: rgba(247,244,238,0.4); }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--brass);
+}
+.btn-submit {
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--brass);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 2px;
+  padding: 14px 40px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btn-submit:hover { background: var(--brass-hover); }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--bone);
+  border-top: 1px solid rgba(140,130,117,0.2);
+  text-align: center;
+  padding: 64px 6vw 40px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--clay);
+  margin-bottom: 28px;
+}
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.footer-nav a {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--clay);
+  transition: color 0.3s ease;
+}
+.footer-nav a:hover { color: var(--charcoal); }
+.footer-ig {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--brass);
+  margin-bottom: 32px;
+  display: inline-block;
+}
+.footer-divider {
+  height: 1px;
+  background: rgba(140,130,117,0.15);
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+.footer-copy {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--clay);
+  margin-bottom: 6px;
+}
+.footer-credit {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--clay);
+  opacity: 0.7;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--reveal-ease), transform 0.9s var(--reveal-ease);
+}
+.revealed { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  .matieres { grid-template-columns: 1fr; gap: 56px; }
+  .etapes { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
+  .etape:nth-child(3) { padding-left: 0; border-left: none; }
+  .temoignages-grid { grid-template-columns: 1fr; }
+  .atelier-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 7vw; }
+  .manifesto { padding: 80px 7vw; }
+  .nav-links, .cta-header { display: none; }
+  .hamburger { display: flex; }
+
+  .matiere img { height: 280px; }
+
+  .etapes { grid-template-columns: 1fr; gap: 0; }
+  .etape {
+    padding: 32px 0;
+    border-left: none;
+    border-top: 1px solid rgba(140,130,117,0.2);
+  }
+  .etape:first-child { padding-top: 0; border-top: none; }
+
+  .temoignage {
+    padding: 32px 0;
+    border-left: none;
+    border-top: 1px solid rgba(140,130,117,0.2);
+  }
+  .temoignage:first-child { padding-top: 0; border-top: none; }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 4px;
+  }
+  .gallery-item:first-child { grid-row: auto; grid-column: 1 / 3; }
+  .gallery-item { height: 240px; }
+
+  .atelier-img img { height: 360px; }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-line { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms;
+    transition-duration: 0.001ms;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TEXTURE MICROCIMENT (filtre SVG procédural) ===== -->
+<svg style="position:fixed; width:0; height:0;" aria-hidden="true">
+  <filter id="cementGrain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.15  0 0 0 0 0.13  0 0 0 0 0.1  0 0 0 0.5 0"/>
+  </filter>
+</svg>
+
+<!-- ===== MOBILE OVERLAY ===== -->
+<nav class="mobile-overlay" id="mobileOverlay" aria-label="Navigation mobile">
+  <a href="#savoir-faire">Savoir-faire</a>
+  <a href="#realisations">Réalisations</a>
+  <a href="#atelier">L'atelier</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact">Démarrer un projet</a>
+</nav>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <a href="#hero" class="logo" aria-label="Renovpourtoi — accueil">RENOVPOURTOI</a>
+  <nav class="nav" aria-label="Navigation principale">
+    <div class="nav-links">
+      <a href="#savoir-faire">Savoir-faire</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#atelier">L'atelier</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="cta-header" aria-label="Démarrer un projet">Démarrer un projet</a>
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <img class="hero-bg" src="https://images.unsplash.com/photo-1600210492486-715a346378a9?w=1600&q=80" alt="Intérieur épuré en microciment et bois clair baigné de lumière naturelle méditerranéenne" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Artisan rénovateur · Créateur sur mesure</span>
+    <h1>
+      <span class="line1">Where matter</span>
+      <span class="line2">becomes emotion.</span>
+    </h1>
+    <p class="hero-sub">Microciment, bois, métal. Rénovation et création sur mesure, brutes et intemporelles.</p>
+    <div class="hero-ctas">
+      <a href="#realisations" class="btn btn-light" aria-label="Découvrir nos réalisations">Découvrir nos réalisations</a>
+      <a href="#contact" class="btn btn-outline-light" aria-label="Nous contacter">Nous contacter</a>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== MANIFESTO ===== -->
+<section class="manifesto has-cement-texture">
+  <p class="manifesto-quote reveal">La matière ne se cache pas. Elle se révèle, se touche, se vit. Chaque rénovation est une rencontre entre le geste et le temps.</p>
+  <p class="manifesto-sign reveal">— L'esprit Renovpourtoi</p>
+</section>
+
+<!-- ===== SAVOIR-FAIRE ===== -->
+<section class="section savoir has-cement-texture" id="savoir-faire">
+  <div class="section-narrow">
+    <span class="eyebrow reveal">Notre savoir-faire</span>
+    <h2 class="reveal">Trois matières, une <span class="italic-accent">philosophie</span>.</h2>
+    <div class="matieres">
+      <article class="matiere reveal">
+        <img src="https://images.unsplash.com/photo-1556909114-44e3e9699e2b?w=900&q=80" alt="Mur en microciment taupe à la texture minérale révélée par une lumière rasante" loading="lazy">
+        <span class="matiere-num">I</span>
+        <h3>Microciment</h3>
+        <p>Sols, murs, plans de travail, douches italiennes. Le microciment épouse chaque surface sans joint, sans rupture. Une matière minérale, continue, qui capte la lumière différemment selon l'heure du jour.</p>
+      </article>
+      <article class="matiere reveal">
+        <img src="https://images.unsplash.com/photo-1617104551722-3b2d51366400?w=900&q=80" alt="Mobilier en bois brut clair sur mesure, bibliothèque aux veines apparentes" loading="lazy">
+        <span class="matiere-num">II</span>
+        <h3>Bois brut</h3>
+        <p>Chêne, pin, bois massif travaillé à la main. Bibliothèques, dressings, mobilier intégré sur mesure. Chaque pièce porte la trace du geste — nœuds, veines, irrégularités assumées comme une signature.</p>
+      </article>
+      <article class="matiere reveal">
+        <img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?w=900&q=80" alt="Robinetterie en métal noir mat, structure épurée et précise" loading="lazy">
+        <span class="matiere-num">III</span>
+        <h3>Métal</h3>
+        <p>Structures, garde-corps, accessoires en métal noir mat ou laiton brossé. La précision du métal en contrepoint de la chaleur du bois et de la texture du microciment — l'équilibre des matières.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESSUS ===== -->
+<section class="section processus">
+  <div class="section-narrow">
+    <span class="eyebrow reveal">Le parcours d'un projet</span>
+    <h2 class="reveal">De la rencontre à la <span class="italic-accent">réception</span>.</h2>
+    <div class="etapes">
+      <article class="etape reveal">
+        <span class="etape-num">01</span>
+        <h3>La rencontre</h3>
+        <p>Premier échange, visite du lieu, écoute du projet et des envies. On comprend l'espace avant de le transformer.</p>
+      </article>
+      <article class="etape reveal">
+        <span class="etape-num">02</span>
+        <h3>La matière</h3>
+        <p>Sélection des matériaux, microciment, essences de bois, finitions métal. Chaque choix est pensé pour durer et vieillir avec grâce.</p>
+      </article>
+      <article class="etape reveal">
+        <span class="etape-num">03</span>
+        <h3>Le chantier</h3>
+        <p>Exécution sur mesure, geste par geste. Suivi régulier, transparence totale sur l'avancement.</p>
+      </article>
+      <article class="etape reveal">
+        <span class="etape-num">04</span>
+        <h3>La réception</h3>
+        <p>Livraison du projet abouti. Le moment où la matière devient enfin émotion — votre émotion.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REALISATIONS ===== -->
+<section class="section realisations has-cement-texture" id="realisations">
+  <div class="section-narrow">
+    <span class="eyebrow reveal">Réalisations</span>
+    <h2 class="reveal">Quelques <span class="italic-accent">rencontres</span> avec la matière.</h2>
+    <div class="gallery reveal">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=700&q=80" alt="Salle de bain en microciment avec douche italienne" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Salle de bain · Microciment</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556909212-d5b65c1c7b2c?w=700&q=80" alt="Cuisine en bois clair avec plan de travail en microciment" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Cuisine sur mesure</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1616137148650-bda4ebcd44d1?w=700&q=80" alt="Bibliothèque murale en bois sur mesure intégrée" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Bibliothèque bois brut</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600607687644-c7531e489ece?w=700&q=80" alt="Salon épuré aux tons naturels avec mobilier en bois" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Salon · Tons naturels</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=700&q=80" alt="Détail architectural mettant en valeur la lumière et la matière" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Détail · Lumière & matière</span>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=700&q=80" alt="Terrasse extérieure en bois et pierre, ambiance méditerranéenne" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <span class="gallery-label">Extérieur · Bois & pierre</span>
+      </div>
+    </div>
+    <div class="gallery-cta reveal">
+      <a href="https://www.instagram.com/renovpourtoi" target="_blank" rel="noopener" aria-label="Voir plus de réalisations sur Instagram">Voir plus sur Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ATELIER ===== -->
+<section class="section atelier" id="atelier">
+  <div class="section-narrow atelier-grid">
+    <div class="atelier-img reveal">
+      <img src="https://images.unsplash.com/photo-1581539250439-c8f3a8eb1726?w=800&q=80" alt="Mains d'artisan travaillant la matière dans l'atelier" loading="lazy">
+    </div>
+    <div class="atelier-text reveal">
+      <span class="eyebrow">L'atelier</span>
+      <h2>L'artisan derrière<br>chaque <span class="italic-accent">matière</span>.</h2>
+      <p>Renovpourtoi, c'est une approche de la rénovation qui refuse le standardisé. Chaque projet commence par une matière — microciment, bois ou métal — choisie pour ce qu'elle raconte, pas seulement pour ce qu'elle coûte.</p>
+      <p>Ce travail est né d'une conviction simple : la matière brute, bien travaillée, vieillit mieux que le parfait artificiel. Un mur en microciment se patine. Un bois massif se marque. Un métal noir mat s'use avec élégance. C'est cette honnêteté du matériau que nous cherchons à révéler dans chaque chantier.</p>
+      <div class="atelier-mentions">Sur mesure · Matériaux nobles · Suivi de chantier transparent</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEMOIGNAGES ===== -->
+<section class="section temoignages has-cement-texture">
+  <div class="section-narrow">
+    <span class="eyebrow reveal">Paroles de clients</span>
+    <h2 class="reveal">Ce qu'ils en <span class="italic-accent">retiennent</span>.</h2>
+    <div class="temoignages-grid">
+      <blockquote class="temoignage reveal">
+        <p class="temoignage-text">« Ils ont transformé notre salle de bain en quelque chose qui ressemble à une pièce d'architecture. Le microciment, la lumière, tout est pensé. »</p>
+        <cite class="temoignage-author">Claire & Antoine M.</cite>
+      </blockquote>
+      <blockquote class="temoignage reveal">
+        <p class="temoignage-text">« Le bois brut qu'ils ont travaillé pour notre bibliothèque a une âme. On sent que ce n'est pas du mobilier standard. C'est unique. »</p>
+        <cite class="temoignage-author">Julien R.</cite>
+      </blockquote>
+      <blockquote class="temoignage reveal">
+        <p class="temoignage-text">« Suivi de chantier impeccable, et le résultat dépasse ce qu'on imaginait. La matière raconte vraiment quelque chose dans cette maison maintenant. »</p>
+        <cite class="temoignage-author">Sophie L.</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact has-cement-texture" id="contact">
+  <div class="section-narrow">
+    <span class="eyebrow reveal">Démarrer un projet</span>
+    <h2 class="reveal">Racontons une<br><span class="italic-accent">nouvelle matière.</span></h2>
+    <p class="contact-sub reveal">Chaque projet commence par une conversation.</p>
+    <div class="contact-grid">
+      <div class="contact-channels reveal">
+        <div>
+          <span class="channel-label">Instagram</span>
+          <a class="channel-value" href="https://www.instagram.com/renovpourtoi" target="_blank" rel="noopener">@renovpourtoi</a>
+        </div>
+        <div>
+          <span class="channel-label">Email</span>
+          <span class="channel-value">[email à compléter]</span>
+        </div>
+        <div>
+          <span class="channel-label">Zone d'intervention</span>
+          <span class="channel-value">[zone à compléter — Sud de la France]</span>
+        </div>
+      </div>
+      <form class="contact-form reveal" action="#" method="post">
+        <div class="form-field">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+        </div>
+        <div class="form-field">
+          <label for="type">Type de projet</label>
+          <select id="type" name="type">
+            <option>Rénovation complète</option>
+            <option>Application microciment</option>
+            <option>Mobilier bois sur mesure</option>
+            <option>Travail du métal</option>
+            <option>Salle de bain matiériste</option>
+            <option>Cuisine sur mesure</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="projet">Votre projet</label>
+          <textarea id="projet" name="projet" placeholder="Décrivez l'espace, vos envies, vos matières..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit" aria-label="Envoyer votre demande">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-logo">RENOVPOURTOI</div>
+  <div class="footer-tagline">Where matter becomes emotion</div>
+  <nav class="footer-nav" aria-label="Navigation pied de page">
+    <a href="#savoir-faire">Savoir-faire</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#atelier">L'atelier</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="footer-ig" href="https://www.instagram.com/renovpourtoi" target="_blank" rel="noopener">@renovpourtoi</a>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Renovpourtoi — Tous droits réservés</p>
+  <p class="footer-credit">Site réalisé par Payment Flow</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+'use strict';
+
+(function () {
+  /* ===== Header scroll state ===== */
+  const header = document.getElementById('header');
+  function handleHeaderScroll() {
+    if (window.scrollY > 80) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+  handleHeaderScroll();
+
+  /* ===== Mobile menu ===== */
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  function toggleMenu() {
+    const isOpen = overlay.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', toggleMenu);
+  overlay.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (overlay.classList.contains('open')) { toggleMenu(); }
+    });
+  });
+
+  /* ===== Scroll reveal ===== */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    revealEls.forEach(function (el) { el.classList.add('revealed'); });
+  } else {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const siblings = entry.target.parentElement
+            ? Array.prototype.slice.call(entry.target.parentElement.querySelectorAll('.reveal'))
+            : [];
+          const index = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = (index > 0 ? index * 0.12 : 0) + 's';
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ===== Scrollspy ===== */
+  const sections = ['savoir-faire', 'realisations', 'atelier', 'contact']
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  const navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+
+  function setActiveLink(id) {
+    navLinks.forEach(function (link) {
+      const isActive = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', isActive);
+    });
+  }
+  const spyObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { setActiveLink(entry.target.id); }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(function (section) { spyObserver.observe(section); });
+})();
+</script>
+
+</body>
+</html>
